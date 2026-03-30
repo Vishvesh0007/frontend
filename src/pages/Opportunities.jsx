@@ -206,7 +206,7 @@ const Opportunities = () => {
             {/* IMAGE */}
             {op.image ? (
               <img
-                src={`http://localhost:5000/${op.image}`}
+                src={`${import.meta.env.VITE_API_BASE_URL}/${op.image}`}
                 alt="Opportunity"
                 className="card-image"
               />

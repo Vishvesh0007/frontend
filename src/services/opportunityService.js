@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:5000/api/opportunities";
+const API = `${import.meta.env.VITE_API_BASE_URL}/api/opportunities`;
 
 export const getOpportunities = (token) =>
   axios.get(API, {
@@ -31,7 +31,7 @@ export const deleteOpportunity = (id, token) =>
   });
 
 export const deleteAdminOpportunity = (id, token) =>
-  axios.delete(`http://localhost:5000/api/admin/opportunities/${id}`, {
+  axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/admin/opportunities/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 export const getSingleOpportunity = (id) =>

@@ -130,21 +130,21 @@ const AdminPanel = () => {
   const adminName = localStorage.getItem("name") || "Admin";
 
   const fetchStats = async () => {
-    const res = await axios.get("http://localhost:5000/api/admin/dashboard-stats", {
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/dashboard-stats`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     setStats(res.data);
   };
 
   const fetchUsers = async () => {
-    const res = await axios.get("http://localhost:5000/api/admin/users", {
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/users`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     setUsers(res.data);
   };
 
   const fetchActivityLogs = async () => {
-    const res = await axios.get("http://localhost:5000/api/admin/activity-logs?limit=10", {
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/activity-logs?limit=10`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     setActivityLogs(res.data || []);
@@ -157,7 +157,7 @@ const AdminPanel = () => {
     params.set("sort", pickupSort);
 
     const res = await axios.get(
-      `http://localhost:5000/api/admin/pickup-requests?${params.toString()}`,
+      `${import.meta.env.VITE_API_BASE_URL}/api/admin/pickup-requests?${params.toString()}`,
       { headers: { Authorization: `Bearer ${token}` } },
     );
     setPickupRows(res.data || []);
@@ -188,7 +188,7 @@ const AdminPanel = () => {
   };
 
   const handleUsersReport = async () => {
-    const res = await axios.get("http://localhost:5000/api/admin/users", {
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/users`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = res.data || [];
@@ -212,7 +212,7 @@ const AdminPanel = () => {
     const params = new URLSearchParams();
     params.set("sort", "newest");
     const res = await axios.get(
-      `http://localhost:5000/api/admin/pickup-requests?${params.toString()}`,
+      `${import.meta.env.VITE_API_BASE_URL}/api/admin/pickup-requests?${params.toString()}`,
       { headers: { Authorization: `Bearer ${token}` } },
     );
     const data = res.data || [];
@@ -241,7 +241,7 @@ const AdminPanel = () => {
   };
 
   const handleOpportunitiesReport = async () => {
-    const res = await axios.get("http://localhost:5000/api/opportunities", {
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/opportunities`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = res.data || [];
@@ -262,7 +262,7 @@ const AdminPanel = () => {
   };
 
   const handleActivityReport = async () => {
-    const res = await axios.get("http://localhost:5000/api/admin/activity-logs?limit=5000", {
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/activity-logs?limit=5000`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = res.data || [];
@@ -281,7 +281,7 @@ const AdminPanel = () => {
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:5000/api/admin/users/${id}`, {
+    await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/admin/users/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     fetchUsers();
@@ -299,7 +299,7 @@ const AdminPanel = () => {
   const saveUserEdits = async () => {
     if (!editingUser?._id) return;
     await axios.put(
-      `http://localhost:5000/api/admin/users/${editingUser._id}/edit`,
+      `${import.meta.env.VITE_API_BASE_URL}/api/admin/users/${editingUser._id}/edit`,
       editForm,
       { headers: { Authorization: `Bearer ${token}` } },
     );
@@ -310,7 +310,7 @@ const AdminPanel = () => {
 
   const toggleSuspend = async (id) => {
     await axios.put(
-      `http://localhost:5000/api/admin/users/${id}/suspend`,
+      `${import.meta.env.VITE_API_BASE_URL}/api/admin/users/${id}/suspend`,
       {},
       { headers: { Authorization: `Bearer ${token}` } },
     );
@@ -320,7 +320,7 @@ const AdminPanel = () => {
 
   const toggleBlockV2 = async (id) => {
     await axios.put(
-      `http://localhost:5000/api/admin/users/${id}/block`,
+      `${import.meta.env.VITE_API_BASE_URL}/api/admin/users/${id}/block`,
       {},
       { headers: { Authorization: `Bearer ${token}` } },
     );

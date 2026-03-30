@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import io from "socket.io-client";
 import axios from "axios";
 
-const socket = io("http://localhost:5000");
+const socket = io(import.meta.env.VITE_API_BASE_URL);
 
 const Messages = () => {
   const token = localStorage.getItem("token");
@@ -35,7 +35,7 @@ const Messages = () => {
 
     const fetchMessages = async () => {
       const res = await axios.get(
-        `http://localhost:5000/api/messages/${receiverId}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/messages/${receiverId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -66,7 +66,7 @@ const Messages = () => {
 
     // Save to DB
     await axios.post(
-      "http://localhost:5000/api/messages",
+      `${import.meta.env.VITE_API_BASE_URL}/api/messages`,
       { receiver: receiverId, content },
       {
         headers: { Authorization: `Bearer ${token}` },

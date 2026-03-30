@@ -24,7 +24,7 @@ const SchedulePickup = () => {
 
   const fetchPickups = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/pickups/my", {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/pickups/my`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -73,7 +73,7 @@ const SchedulePickup = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/pickups", formData, {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/pickups`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -101,7 +101,7 @@ const SchedulePickup = () => {
   /* ================= DELETE ================= */
   const deletePickup = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/pickups/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/pickups/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

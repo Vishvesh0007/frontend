@@ -11,7 +11,7 @@ const AdminPickups = () => {
   }, []);
 
   const fetchPickups = async () => {
-    const res = await axios.get("http://localhost:5000/api/pickups/admin/all", {
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/pickups/admin/all`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -20,7 +20,7 @@ const AdminPickups = () => {
 
   const updateStatus = async (id, status) => {
     await axios.put(
-      `http://localhost:5000/api/pickups/${id}/status`,
+      `${import.meta.env.VITE_API_BASE_URL}/api/pickups/${id}/status`,
       { status },
       { headers: { Authorization: `Bearer ${token}` } },
     );
@@ -29,7 +29,7 @@ const AdminPickups = () => {
   };
 
   const deletePickup = async (id) => {
-    await axios.delete(`http://localhost:5000/api/pickups/${id}`, {
+    await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/pickups/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 

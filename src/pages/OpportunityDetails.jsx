@@ -22,7 +22,7 @@ const OpportunityDetails = () => {
 
   const checkIfApplied = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/applications/my", {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/applications/my`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -44,7 +44,7 @@ const OpportunityDetails = () => {
   const handleApply = async () => {
     try {
       await axios.post(
-        `http://localhost:5000/api/applications/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/applications/${id}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -95,7 +95,7 @@ const OpportunityDetails = () => {
             <div className="image-card">
               {data.image ? (
                 <img
-                  src={`http://localhost:5000/${data.image}`}
+                  src={`${import.meta.env.VITE_API_BASE_URL}/${data.image}`}
                   alt="Opportunity"
                   className="card-image"
                 />

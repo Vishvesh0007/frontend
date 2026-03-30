@@ -27,7 +27,7 @@ const Login = () => {
     setSuccessMessage("");
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/login`, {
         email: form.email,
         password: form.password,
       });
@@ -47,7 +47,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/verify-otp",
+        `${import.meta.env.VITE_API_BASE_URL}/api/auth/verify-otp`,
         {
           email: form.email,
           otp: form.otp,
@@ -77,7 +77,7 @@ const Login = () => {
 
   const handleResendOtp = async () => {
     try {
-      await axios.post("http://localhost:5000/api/auth/login", {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/login`, {
         email: form.email,
         password: form.password,
       });
