@@ -9,7 +9,7 @@ import {
   FaCalendarAlt,
 } from "react-icons/fa";
 import axios from "axios";
-import "./volunteerDashboard.css";
+import "./volunteerdashboard.css"
 
 const VolunteerDashboard = () => {
   const navigate = useNavigate();
@@ -193,13 +193,12 @@ const VolunteerDashboard = () => {
                   <td>{new Date(app.createdAt).toLocaleDateString()}</td>
                   <td>
                     <span
-                      className={`vd-badge ${
-                        app.status === "accepted"
+                      className={`vd-badge ${app.status === "accepted"
                           ? "badge-success"
                           : app.status === "pending"
                             ? "badge-warning"
                             : "badge-secondary"
-                      }`}
+                        }`}
                     >
                       {app.status}
                     </span>
