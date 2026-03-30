@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import io from "socket.io-client";
 import axios from "axios";
 
-const socket = io(import.meta.env.VITE_API_BASE_URL);
 
 const Messages = () => {
   const token = localStorage.getItem("token");
@@ -13,19 +12,29 @@ const Messages = () => {
   const [content, setContent] = useState("");
 
   const messagesEndRef = useRef(null);
+  const socketRef = useRef(null);
 
-  // Join personal room
+  // Initialize Socket.io connection safely & Join personal room
   useEffect(() => {
+    if (!socketRef.current) {
+        socketRef.current = io(import.meta.env.VITE_API_BASE_URL);
+    }
+    const socket = socketRef.current;
+
     if (userId) {
       socket.emit("joinRoom", userId);
     }
 
+    // Assign event listener
     socket.on("receiveMessage", (data) => {
       setMessages((prev) => [...prev, data]);
     });
 
+    // Clean up our logic so the memory leak disappears when the chat is closed
     return () => {
       socket.off("receiveMessage");
+      socket.disconnect();
+      socketRef.current = null;
     };
   }, [userId]);
 
@@ -61,8 +70,10 @@ const Messages = () => {
       message: content,
     };
 
-    // Emit to socket
-    socket.emit("sendMessage", messageData);
+    // Emit to socket securely via reference
+    if (socketRef.current) {
+        socketRef.current.emit("sendMessage", messageData);
+    }
 
     // Save to DB
     await axios.post(
