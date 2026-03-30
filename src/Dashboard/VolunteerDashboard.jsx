@@ -9,7 +9,7 @@ import {
   FaCalendarAlt,
 } from "react-icons/fa";
 import axios from "axios";
-import "./volunteerdashboard.css"
+import "./volunteerDashboard.css";
 
 const VolunteerDashboard = () => {
   const navigate = useNavigate();
