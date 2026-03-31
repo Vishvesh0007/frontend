@@ -18,6 +18,8 @@ import AdminPickups from "./pages/AdminPickups";
 import NgoDashboard from "./Dashboard/NgoDashboard";
 import VolunteerDashboard from "./Dashboard/VolunteerDashboard";
 import RoleBasedDashboard from "./Dashboard/RoleBasedDashboard";
+import Settings from "./pages/Settings";
+import MyImpact from "./pages/MyImpact";
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const token = localStorage.getItem("token");
@@ -109,6 +111,8 @@ function App() {
           <Route path="notifications" element={<Notifications />} />
           <Route path="messages" element={<Messages />} />
           <Route path="schedule" element={<SchedulePickup />} />
+          <Route path="impact" element={<MyImpact />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
