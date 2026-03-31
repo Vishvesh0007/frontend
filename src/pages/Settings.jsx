@@ -230,21 +230,20 @@ const Settings = () => {
                 <div className="password-strength">
                   <div className="strength-bar">
                     <div
-                      className={`strength-fill ${
-                        passwordForm.newPassword.length < 6
-                          ? "weak"
-                          : passwordForm.newPassword.length < 10
+                      className={`strength-fill ${passwordForm.newPassword.length < 6
+                        ? "weak"
+                        : passwordForm.newPassword.length < 10
                           ? "medium"
                           : "strong"
-                      }`}
+                        }`}
                     />
                   </div>
                   <span className="strength-label">
                     {passwordForm.newPassword.length < 6
                       ? "Weak"
                       : passwordForm.newPassword.length < 10
-                      ? "Medium"
-                      : "Strong"}
+                        ? "Medium"
+                        : "Strong"}
                   </span>
                 </div>
               )}
