@@ -26,7 +26,7 @@ const VolunteerDashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/dashboard/stats`, {
+      const res = await axios.get("http://localhost:5000/api/dashboard/stats", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -34,7 +34,7 @@ const VolunteerDashboard = () => {
 
       // Fetch open opportunities
       const oppRes = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}/api/opportunities`,
+        "http://localhost:5000/api/opportunities",
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -44,7 +44,7 @@ const VolunteerDashboard = () => {
 
       // Fetch my applications
       const appRes = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}/api/applications/my`,
+        "http://localhost:5000/api/applications/my",
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -193,12 +193,13 @@ const VolunteerDashboard = () => {
                   <td>{new Date(app.createdAt).toLocaleDateString()}</td>
                   <td>
                     <span
-                      className={`vd-badge ${app.status === "accepted"
+                      className={`vd-badge ${
+                        app.status === "accepted"
                           ? "badge-success"
                           : app.status === "pending"
                             ? "badge-warning"
                             : "badge-secondary"
-                        }`}
+                      }`}
                     >
                       {app.status}
                     </span>

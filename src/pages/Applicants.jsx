@@ -15,7 +15,7 @@ const Applicants = () => {
   const fetchApplicants = async () => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}/api/applications/opportunity/${id}`,
+        `http://localhost:5000/api/applications/opportunity/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -30,7 +30,7 @@ const Applicants = () => {
   const updateStatus = async (applicationId, status) => {
     try {
       await axios.put(
-        `${import.meta.env.VITE_API_BASE_URL}/api/applications/${applicationId}/status`,
+        `http://localhost:5000/api/applications/${applicationId}/status`,
         { status },
         {
           headers: { Authorization: `Bearer ${token}` },

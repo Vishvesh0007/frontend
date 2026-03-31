@@ -49,7 +49,7 @@ const NgoDashboard = () => {
   }, []);
 
   const fetchStats = async () => {
-    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/dashboard/stats`, {
+    const res = await axios.get("http://localhost:5000/api/dashboard/stats", {
       headers: { Authorization: `Bearer ${token}` },
     });
     setStats(res.data);
@@ -57,7 +57,7 @@ const NgoDashboard = () => {
   const updateStatus = async (applicationId, status) => {
     try {
       await axios.put(
-        `${import.meta.env.VITE_API_BASE_URL}/api/applications/${applicationId}/status`,
+        `http://localhost:5000/api/applications/${applicationId}/status`,
         { status },
         { headers: { Authorization: `Bearer ${token}` } },
       );
@@ -70,7 +70,7 @@ const NgoDashboard = () => {
 
   const handleDeleteOpportunity = async (id) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/opportunities/${id}`, {
+      await axios.delete(`http://localhost:5000/api/opportunities/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

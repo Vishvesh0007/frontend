@@ -12,7 +12,7 @@ const MyApplications = () => {
   const fetchApplications = async () => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}/api/applications/my`,
+        "http://localhost:5000/api/applications/my",
         {
           headers: {
             Authorization: `Bearer ${token}`,
