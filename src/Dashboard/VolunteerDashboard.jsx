@@ -26,7 +26,7 @@ const VolunteerDashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/dashboard/stats", {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/dashboard/stats`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -34,7 +34,7 @@ const VolunteerDashboard = () => {
 
       // Fetch open opportunities
       const oppRes = await axios.get(
-        "http://localhost:5000/api/opportunities",
+        `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/opportunities`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -44,7 +44,7 @@ const VolunteerDashboard = () => {
 
       // Fetch my applications
       const appRes = await axios.get(
-        "http://localhost:5000/api/applications/my",
+        `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/applications/my`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },

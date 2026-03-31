@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import * as messageService from "../services/messageService";
 import "./messages.css";
 
-const socket = io("http://localhost:5000");
+const socket = io(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}`);
 
 const Messages = () => {
   const token = localStorage.getItem("token");

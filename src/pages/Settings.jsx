@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Settings.css";
 
-const API = "http://localhost:5000/api";
+const API = `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api`;
 
 const Settings = () => {
   const token = localStorage.getItem("token");
